@@ -1,47 +1,88 @@
 <template>
   <nav>
-    <v-toolbar flat app color="orange">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>
-        <span class="font-weight-light">Todo</span>
-        <span>Ninja</span>
-      </v-toolbar-title>
+    <v-app-bar
+        app
+        color="dark"
+        dark
+    >
+      <!-- Brand -->
+      <v-app-bar-nav-icon @click.stop="toggleMini = !toggleMini" />
+        <v-app-bar-title>Market</v-app-bar-title>
       <v-spacer></v-spacer>
-      <v-btn flat color="green">
-        <span>SingIn</span>
+
+      <!-- Search -->
+      <v-text-field
+          v-if="isSearch"
+          type="text"
+          append-icon="fa-search"
+          placeholder="Search..."
+          color="indigo"
+          class="mr-3"
+          style="margin-bottom: -20px"
+          autofocus
+          @blur="isSearch = false"
+      ></v-text-field>
+
+      <v-btn class="mr-3"
+             v-else
+             outlined
+             small
+             fab
+             color="indigo"
+             @click="isSearch = !isSearch"
+      >
+        <v-icon small>fa-search</v-icon>
+      </v-btn>
+
+      <!-- LogIn -->
+      <v-btn class="mr-2"
+             color="green"
+             outlined
+             @click="$emit('openDialog', {name: 'LogIn'})"
+      >
+        <span>Log In</span>
         <v-icon right>fa-sign-in</v-icon>
       </v-btn>
-    </v-toolbar>
 
+      <!-- Sing In -->
+      <v-btn class="mr-2"
+             color="info"
+             outlined
+             @click="$emit('openDialog', {name: 'SingIn'})"
+      >
+        <span>Sing In</span>
+        <v-icon right>fa-key</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <!-- SideBar -->
     <v-navigation-drawer
-        v-model="drawer"
-        absolute
-        bottom
-        temporary
+        v-model="sidebarMenu"
+        app
+        floating
+        :permanent="toggleMini"
+        :mini-variant.sync="mini"
+        dark
+        color="black"
     >
       <v-list
           nav
           dense
       >
         <v-list-item-group
-            v-model="group"
             active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
+          <v-list-item
+              v-for="item in items"
+              :key="item.title"
+              :to="item.href"
+          >
+            <v-list-item-title>
+              <v-icon>{{ item.icon }}</v-icon>
+              {{ item.title }}
+            </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
-          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -51,9 +92,23 @@
 <script>
 export default {
   name: "NavBar",
+  computed: {
+    mini() {
+      return (this.$vuetify.breakpoint.smAndDown) || this.toggleMini
+    },
+  },
   data () {
     return {
-      drawer: false
+      sidebarMenu: true,
+      toggleMini: true,
+      isSearch: false,
+      items: [
+        { title:"Home", href:"/", icon:"mdi-home-outline" },
+        { title:"SingIn", href:"/log-in", icon:"mdi-shield-account" },
+        { title:"Components", href:"/comp", icon:"mdi-palette-swatch" },
+        { title:"Customers", href:"/customers", icon:"mdi-account-search-outline" },
+        { title:"Orders", href:"/orders", icon:"mdi-bus-clock" },
+      ],
     }
   }
 }

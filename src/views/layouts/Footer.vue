@@ -2,11 +2,13 @@
   <v-footer
       dark
       padless
+      absolute
   >
     <v-card
         flat
         tile
         class="lighten-1 white--text text-center"
+        style="width: 100%"
     >
       <v-card-text>
         <v-btn

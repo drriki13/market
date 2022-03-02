@@ -1,10 +1,16 @@
 <template>
   <v-app>
-    <NavBar />
+    <NavBar @openDialog="openDialog" />
     <v-main>
+      <v-dialog
+          v-model="showDialog"
+          max-width="400px"
+      >
+        <component :is="dialogView"></component>
+      </v-dialog>
       <router-view />
+      <Footer />
     </v-main>
-    <Footer />
   </v-app>
 </template>
 
@@ -16,7 +22,19 @@ export default {
   name: 'App',
   components: {
     NavBar,
-    Footer
+    Footer,
+  },
+  data() {
+    return {
+      showDialog: false,
+      dialogView: null
+    }
+  },
+  methods: {
+    openDialog(e) {
+      this.dialogView = () => import('@/views/' + e.name);
+      this.showDialog = true;
+    }
   }
 };
 </script>

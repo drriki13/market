@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "../views/Home";
-import NotFondPage from "../views/404"
-
 Vue.use(VueRouter)
+
+function loadView(view) {
+    return () => import('@/views/' + view);
+}
 
 export default new VueRouter({
     mode: 'history',
@@ -12,11 +13,16 @@ export default new VueRouter({
         {
             path: '/',
             name: 'Home',
-            component: Home
+            component: loadView('Home')
+        },
+        {
+            path: '/log-in',
+            name: 'LogIn',
+            component: loadView('LogIn')
         },
         {
             path: "*",
-            component: NotFondPage,
+            component: loadView('404'),
         }
     ]
 })
