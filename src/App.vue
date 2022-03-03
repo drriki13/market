@@ -9,8 +9,8 @@
         <component :is="dialogView"></component>
       </v-dialog>
       <router-view />
-      <Footer />
     </v-main>
+    <Footer />
   </v-app>
 </template>
 

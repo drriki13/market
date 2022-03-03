@@ -11,28 +11,34 @@
       <v-spacer></v-spacer>
 
       <!-- Search -->
-      <v-text-field
-          v-if="isSearch"
-          type="text"
-          append-icon="fa-search"
-          placeholder="Search..."
-          color="indigo"
-          class="mr-3"
-          style="margin-bottom: -20px"
-          autofocus
-          @blur="isSearch = false"
-      ></v-text-field>
-
-      <v-btn class="mr-3"
-             v-else
-             outlined
-             small
-             fab
-             color="indigo"
-             @click="isSearch = !isSearch"
+      <transition
+          name="list-complete"
       >
-        <v-icon small>fa-search</v-icon>
-      </v-btn>
+        <v-text-field
+            v-if="isSearch"
+            type="text"
+            append-icon="fa-search"
+            placeholder="Search..."
+            color="indigo"
+            class="mr-3"
+            style="margin-bottom: -20px"
+            autofocus
+            @blur="isSearch = false"
+            key="searchInput"
+        ></v-text-field>
+
+        <v-btn class="mr-3"
+               v-else
+               outlined
+               small
+               fab
+               color="indigo"
+               @click="isSearch = !isSearch"
+               key="searchBtn"
+        >
+          <v-icon small>fa-search</v-icon>
+        </v-btn>
+      </transition>
 
       <!-- LogIn -->
       <v-btn class="mr-2"
@@ -113,3 +119,19 @@ export default {
   }
 }
 </script>
+
+<style>
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+  /* .list-complete-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+</style>
