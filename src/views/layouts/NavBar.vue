@@ -3,7 +3,9 @@
     <v-app-bar
         app
         color="dark"
+        dense
         dark
+        clipped-left
     >
       <!-- Brand -->
       <v-app-bar-nav-icon @click.stop="toggleMini = !toggleMini" />
@@ -12,7 +14,11 @@
 
       <!-- Search -->
       <transition
-          name="list-complete"
+          name="custom-classes-transition"
+          enter-active-class="animated slideInDown"
+          leave-active-class="animated slideOutUp"
+          mode="out-in"
+          :duration="{ enter: 800, leave: 700 }"
       >
         <v-text-field
             v-if="isSearch"
@@ -66,10 +72,11 @@
         v-model="sidebarMenu"
         app
         floating
-        :permanent="toggleMini"
+        permanent
         :mini-variant.sync="mini"
         dark
         color="black"
+        clipped
     >
       <v-list
           nav
@@ -119,19 +126,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.list-complete-item {
-  transition: all 1s;
-  display: inline-block;
-  margin-right: 10px;
-}
-.list-complete-enter, .list-complete-leave-to
-  /* .list-complete-leave-active до версии 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
-}
-.list-complete-leave-active {
-  position: absolute;
-}
-</style>
