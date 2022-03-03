@@ -16,9 +16,9 @@ export default new VueRouter({
             component: loadView('Home')
         },
         {
-            path: '/log-in',
-            name: 'LogIn',
-            component: loadView('LogIn')
+            path: '/test',
+            name: 'Test',
+            component: loadView('Test')
         },
         {
             path: "*",

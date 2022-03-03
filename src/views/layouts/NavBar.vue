@@ -117,7 +117,7 @@ export default {
       isSearch: false,
       items: [
         { title:"Home", href:"/", icon:"mdi-home-outline" },
-        { title:"SingIn", href:"/log-in", icon:"mdi-shield-account" },
+        { title:"Test", href:"/test", icon:"mdi-shield-account" },
         { title:"Components", href:"/comp", icon:"mdi-palette-swatch" },
         { title:"Customers", href:"/customers", icon:"mdi-account-search-outline" },
         { title:"Orders", href:"/orders", icon:"mdi-bus-clock" },
