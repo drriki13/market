@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         products: [
-            {id: 1, title: "FIFA 22", price: "3485", img: "fifa22", discount: "57"},
+            {id: 1, title: "FIFA 22", price: "3485", img: "fifa22", discount: "57", description: "FIFA 22 — 29-ая по счёту компьютерная игра из серии FIFA в жанре Спортивный симулятор футбольного симулятора, разработанная компаниями EA Vancouver под издательством Electronic Arts. На ПК, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S и Nintendo Switch игра уже вышла в октябре 2021 года."},
             {id: 2, title: "Elite dangerous", price: "2000", img: "ed", discount: null},
             {id: 3, title: "Test", price: "1600", img: null, discount: "10"},
             {id: 4, title: "Test", price: "1600", img: null, discount: "10"},

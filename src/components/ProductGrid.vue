@@ -1,5 +1,5 @@
 <template>
-  <div class="container--fluid mb-5">
+  <div class="container mb-5">
     <h1 class="mt-2 ml-8">New products</h1>
     <v-row>
       <v-col :cols="cols" v-for="product in products" :key="product.id"
@@ -29,12 +29,6 @@ export default {
     },
     products() {
       return this.$store.state.products;
-    }
-  },
-  methods: {
-    goProduct(id) {
-      console.log(id);
-      this.$router.push({name: 'Product'})
     }
   }
 }
