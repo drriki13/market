@@ -18,12 +18,19 @@
         </v-img>
       </v-carousel-item>
     </v-carousel>
+
+    <ProductGrid cols="2" />
   </div>
 </template>
 
 <script>
+import ProductGrid from "@/components/ProductGrid";
+
 export default {
   name: "HomePage",
+  components: {
+    ProductGrid
+  },
   data() {
     return {
       slider: 0,

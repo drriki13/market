@@ -44,7 +44,6 @@ export default {
       if (this.img != null) {
         path = require('@/assets/img/products/' + this.img + '.png');
       }
-      console.log(path);
       return path;
     },
     discountSum() {

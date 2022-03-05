@@ -1,8 +1,9 @@
 <template>
-  <div class="container--fluid">
-    <h1 class="mt-2 ml-4">New products</h1>
+  <div class="container--fluid mb-5">
+    <h1 class="mt-2 ml-8">New products</h1>
     <v-row>
-      <v-col :cols="cols" v-for="product in products" :key="product.title">
+      <v-col :cols="cols" v-for="product in products" :key="product.id"
+             @click="$router.push({name: 'Product', params: {id: product.id}})">
         <ProductCart
             :title="product.title"
             :discount="product.discount"
@@ -22,10 +23,18 @@ export default {
   components: {
     ProductCart
   },
-  props: {
-    products: Array,
-    cols: {
-      default: 2
+  computed: {
+    cols() {
+      return this.$store.state.productCols;
+    },
+    products() {
+      return this.$store.state.products;
+    }
+  },
+  methods: {
+    goProduct(id) {
+      console.log(id);
+      this.$router.push({name: 'Product'})
     }
   }
 }

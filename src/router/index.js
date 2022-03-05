@@ -16,6 +16,11 @@ export default new VueRouter({
             component: loadView('Home')
         },
         {
+            path: '/product/:id',
+            name: 'Product',
+            component: loadView('Product'),
+        },
+        {
             path: '/test',
             name: 'Test',
             component: loadView('Test')
